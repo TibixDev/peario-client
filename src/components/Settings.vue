@@ -22,6 +22,14 @@
                 </div>
                 <div class="setting">
                     <div class="label">
+                        <ion-icon name="server"></ion-icon>
+                        Streaming Server
+                        <!-- TODO: Add help tooltip -->
+                    </div>
+                    <ATextInput :value="settings.streamingServer" @change="updateStreamingServer($event)" />
+                </div>
+                <div class="setting">
+                    <div class="label">
                         <ion-icon name="heart"></ion-icon>
                         {{ $t('components.settings.support') }}
                     </div>
@@ -92,6 +100,11 @@ export default {
                 store.dispatch('settings/updateUsername', username);
                 ClientService.send('user.update', { username });
             }
+        },
+        updateStreamingServer({ target }) {
+            const streamingServer = target.value;
+            store.dispatch('settings/updateStreamingServer', streamingServer);
+            console.log("Updating streaming server", streamingServer)
         },
         close() {
             this.$emit('update:show', !this.show);

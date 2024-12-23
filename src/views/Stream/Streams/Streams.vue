@@ -35,6 +35,13 @@
                             </div>
                             {{ item.name }}
                         </div>
+                        <!-- For addons where the description serves as the only possible title, such as nCore -->
+                        <div class="name" v-if="!item.name && !item.title && item.description">
+                            <div class="small-icon">
+                                <img v-bind:src="item.icon" alt="">
+                            </div>
+                            {{ item.description }}
+                        </div>
                         <div class="title" :class="{ 'extend': !item.name }">{{ item.title }}</div>
                     </div>
                     <div class="type" v-if="item.type">{{ item.type }}</div>
